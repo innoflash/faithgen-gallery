@@ -1,0 +1,59 @@
+{
+  "id": "5b87dcc0-e1de-11e9-b0f4-233a307546d6",
+  "name": "UFIC JHB",
+  "email": "allzvese@gmail.com",
+  "phone": "0651562779",
+  "account": "Free",
+  "active": true,
+  "api_key": "ee--1b8697a-927c413-0d9c0b9fe7bd9c66",
+  "avatar": {
+    "_50": "http://localhost:8000/storage/profile/50-50/40614b13df1b07377977d6483ec516c--e700d2457605e7a5111-0-0.png",
+    "_100": "http://localhost:8000/storage/profile/100-100/40614b13df1b07377977d6483ec516c--e700d2457605e7a5111-0-0.png",
+    "original": "http://localhost:8000/storage/profile/original/40614b13df1b07377977d6483ec516c--e700d2457605e7a5111-0-0.png"
+  },
+  "date": {
+    "approx": "1 week ago",
+    "formatted": "Sat 28 Sep 2019",
+    "exact": "2019-09-28T10:54:34.000000Z"
+  },
+  "users": {
+    "count": 0
+  },
+  "location": {
+    "address": {
+      "name": "14 Alexander St",
+      "formatted": "14 Alexander St, Ferreiras Dorp, Johannesburg, 2048, South Africa"
+    },
+    "country": "South Africa",
+    "locality": "Johannesburg",
+    "place_id": "ChIJRX06t6UOlR4Rg16W63AfLQw",
+    "place_url": "https://maps.google.com/?q=14+Alexander+St,+Ferreiras+Dorp,+Johannesburg,+2048,+South+Africa&ftid=0x1e950ea5b73a7d45:0xc2d1f70eb965e83",
+    "coordinates": {
+      "lat": -26.20803,
+      "lng": 28.032640000000015
+    },
+    "postal_code": "2048"
+  },
+  "links": {
+    "website": "https://hisword.net",
+    "facebook": "https://www.facebook.com/hisword19",
+    "youtube": "https://www.youtube.com/channel/UCbP2HeYGC3kfHjHLMPplZuQ",
+    "twitter": "https://twitter.com/user?",
+    "instagram": "https://twitter.com/user?"
+  },
+  "contact": {
+    "phones": [
+      "0651562779",
+      "0651562779"
+    ],
+    "emails": [
+      "allzvese@gmail.com",
+      "innocentmazando@gmail.com"
+    ]
+  },
+  "statement": {
+    "vision": "He delete operator deletes both the value of the property and the property itself.\n\nAfter deletion, the property cannot be used before it is added back again.\n\nThe delete operator is designed to be used on object properties. It has no effect on variables or functions.\n\nNote: The delete operator should not be used on predefined JavaScript object properties. It can crash your application.",
+    "mission": "Congrats on passing our Android test. As next steps before matching you with an American software job, I would like to set up some time for you to speak with our VP of Engineering Zan Doan.\n\nAre you free to speak tomorrow?",
+    "about_us": "<div><a href=\"https://stackoverflow.com/questions/52286542/vuejs-google-places-autocomplete\">VueJS Google places autocomplete - Stack Overflow</a>https://stackoverflow.com › questions › vuejs-google-places-autocomplete</div><ol><li><br></li></ol><div>1 answer</div><div>Sep 12, 2018 - Replace the line inside your mounted with this: if(this.$refs.address) this.$refs.address.focus();. Because the <strong><em>autocomplete</em></strong> component is placed ...</div><div><a href=\"https://stackoverflow.com/questions/41688977/google-places-autocomplete-vue-js\"><strong>Google Places Autocomplete Vue</strong>.js</a></div><div>17 Jan 2017</div><div><a href=\"https://stackoverflow.com/questions/52639743/vue-google-map-autocomplete-two-way-binding-not-working\"><strong>Vue</strong>-<strong>google-map autocomplete</strong>&nbsp;two way binding not working</a></div><div>04 Oct 2018</div><div><a href=\"https://stackoverflow.com/questions/55309795/google-autocomplete-component-requires-refresh-to-load-correctly-vuejs\"><strong>Google autocomplete</strong>&nbsp;component requires refresh to load correctly&nbsp;<strong>...</strong></a></div><div>23 Mar 2019</div><div><a href=\"https://stackoverflow.com/questions/47155361/how-to-use-google-places-autocomplete-in-vue\">How to use&nbsp;<strong>google places autocomplete</strong>&nbsp;in&nbsp;<strong>vue</strong></a></div><div>07 Nov 2017</div><div><a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete+site:stackoverflow.com&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQrQIoBDAGegQICRAN\">More results from stackoverflow.com</a></div><div><a href=\"https://vuejsexamples.com/a-vue-js-autosuggest-component-for-the-google-places-api/\">A Vue.js autosuggest component for the Google Places API</a>https://vuejsexamples.com › a-vue-js-autosuggest-component-for-the-goog...</div><ol><li><br></li></ol><div>Aug 19, 2017 - <strong><em>Vue</em></strong> Google <strong><em>Autocomplete</em></strong>. A <strong><em>Vue</em></strong>.js (2.x) autosuggest component for the <strong><em>Google Maps Places API</em></strong>. Benefits. I have tried to use different <strong><em>Vue</em></strong> ...</div><div><br></div><div><a href=\"https://alligator.io/vuejs/vue-google-maps/\">Using Google Maps in Vue with vue-google-maps ← Alligator.io</a>https://alligator.io › vuejs › vue-google-maps</div><ol><li><br></li></ol><div>Mar 1, 2018 - A simple guide to using <strong><em>Google Maps</em></strong> (+ <strong><em>Autocomplete</em></strong>) in <strong><em>Vue</em></strong>.</div><div><br></div><div><a href=\"https://laracasts.com/discuss/channels/vue/place-autocomplete-google-for-vue\">Place Autocomplete Google for VUE - Laracasts</a>https://laracasts.com › discuss › channels › place-autocomplete-google-for-...</div><ol><li><br></li></ol><div>Mar 22, 2018 - Hello Guys , does some one had used this <strong><em>google</em></strong> class in <strong><em>VUE</em></strong> ...</div><div><br></div><div><br></div><div><br></div><div><br></div><div>Searches related to vuejs google maps autocomplete</div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=gmap-autocomplete+vue&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoAHoECAoQAQ\"><strong>gmap-autocomplete vue</strong></a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=vue+google+maps+infowindow&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoAXoECAoQAg\"><strong>vue</strong>&nbsp;google maps&nbsp;<strong>infowindow</strong></a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=vuetify-google-autocomplete&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoAnoECAoQAw\"><strong>vuetify-google-autocomplete</strong></a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=nuxt+google+maps&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoA3oECAoQBA\"><strong>nuxt</strong>&nbsp;google maps</a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=vue-google-places+npm&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoBHoECAoQBQ\"><strong>vue-google-places npm</strong></a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=npm+vue-google-autocomplete&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoBXoECAoQBg\"><strong>npm vue-google-autocomplete</strong></a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=vue+address+autocomplete&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoBnoECAoQBw\"><strong>vue address</strong>&nbsp;autocomplete</a></div><div><a href=\"https://www.google.com/search?sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;q=vue+places+autocomplete&amp;sa=X&amp;ved=2ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ1QIoB3oECAoQCA\"><strong>vue places</strong>&nbsp;autocomplete</a></div><div><br></div><div><br></div><h1>Page navigation</h1><div>&nbsp;| 1 | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=10&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJMB\">2</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=20&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJUB\">3</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=30&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJcB\">4</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=40&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJkB\">5</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=50&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJsB\">6</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=60&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJ0B\">7</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=70&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCJ8B\">8</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=80&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCKEB\">9</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=90&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8tMDCKMB\">10</a> | <a href=\"https://www.google.com/search?q=vuejs+google+maps+autocomplete&amp;sxsrf=ACYBGNRtmQ9Mxf-Osldyq8L4WR5CYpbgQQ:1570632555748&amp;ei=a_OdXYCsLeO61fAP88qj4Ao&amp;start=10&amp;sa=N&amp;ved=0ahUKEwjAjbucto_lAhVjXRUIHXPlCKwQ8NMDCKUB\">Next</a></div><div><br></div><div><br></div><div><br></div><div><br></div>"
+  }
+}
