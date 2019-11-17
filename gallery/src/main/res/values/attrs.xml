@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AlbumView">
+        <attr name="album_name" format="string" />
+        <attr name="album_details" format="string" />
+        <attr name="album_image" format="reference" />
+    </declare-styleable>
+</resources>
