@@ -4,9 +4,18 @@
 
     <application>
         <activity
+            android:name=".AlbumActivity"
+            android:label="@string/title_activity_album"
+            android:parentActivityName=".GalleryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.faithgen.gallery.GalleryActivity" />
+        </activity>
+        <activity
             android:name=".GalleryActivity"
             android:label="@string/title_activity_gallery"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

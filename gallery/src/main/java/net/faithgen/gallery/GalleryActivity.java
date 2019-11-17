@@ -1,5 +1,6 @@
 package net.faithgen.gallery;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
+import net.faithgen.gallery.adapters.AlbumAdapter;
 import net.faithgen.gallery.models.Album;
 import net.faithgen.gallery.utils.AlbumsData;
 import net.faithgen.gallery.utils.Constants;
@@ -33,6 +35,8 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     private List<Album> albums;
     private Pagination pagination;
     private AlbumsData albumsData;
+    private AlbumAdapter albumAdapter;
+    private Intent intent;
 
     @Override
     public String getPageTitle() {
@@ -78,10 +82,13 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
                 pagination = GSONSingleton.getInstance().getGson().fromJson(serverResponse, Pagination.class);
                 albumsData = GSONSingleton.getInstance().getGson().fromJson(serverResponse, AlbumsData.class);
 
-                if(albums == null){
+                if (albums == null || albums.size() == 0) {
                     albums = albumsData.getAlbums();
-                }else{
+                    albumAdapter = new AlbumAdapter(GalleryActivity.this, albums);
+                    albumsView.setAdapter(albumAdapter);
+                } else {
                     albums.addAll(albumsData.getAlbums());
+                    albumAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -95,7 +102,9 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
 
     @Override
     public void onClick(View view, int position) {
-
+        intent = new Intent(this, AlbumActivity.class);
+        intent.putExtra(Album.ID, albums.get(position).getId());
+        startActivity(intent);
     }
 
     @Override

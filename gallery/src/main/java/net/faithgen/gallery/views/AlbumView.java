@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.squareup.picasso.Picasso;
+
 import net.faithgen.gallery.R;
 import net.faithgen.gallery.models.Album;
 
@@ -95,6 +97,10 @@ public class AlbumView extends LinearLayout {
         this.album = album;
         setName(album.getName());
         setDetails(album.getDate().getApprox() + "\n" + album.getSize() + " images");
-
+        Picasso.get()
+                .load(album.getAvatar().get_100())
+                .placeholder(R.drawable.image_placeholder)
+                .error(R.drawable.image_placeholder)
+                .into(getImageView());
     }
 }

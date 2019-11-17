@@ -6,6 +6,7 @@ import net.faithgen.sdk.models.Date;
 import org.itishka.gsonflatten.Flatten;
 
 public class Album {
+    public static final String ID = "ID";
     private String id;
     private String name;
     private String description;

@@ -3,4 +3,5 @@
     <string name="title_activity_gallery">Gallery Activity</string>
     <string name="album_thumb">album thumb</string>
     <string name="image_footer">12 minutes ago \n 3 images</string>
+    <string name="title_activity_album">Album Activity</string>
 </resources>
