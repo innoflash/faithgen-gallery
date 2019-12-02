@@ -10,6 +10,7 @@ public class Album {
     public static final String NAME = "_name";
     public static final String DESCRIPTION = "_description";
     public static final String ALBUM_ID = "album_id";
+    public static final String LIMIT = "limit";
 
     private String id;
     private String name;

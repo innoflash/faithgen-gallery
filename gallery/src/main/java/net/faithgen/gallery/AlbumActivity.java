@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.faithgen.gallery.adapters.ImagesAdapter;
+import net.faithgen.gallery.dialogs.SlideshowDialog;
 import net.faithgen.gallery.models.Album;
 import net.faithgen.gallery.models.Image;
 import net.faithgen.gallery.utils.Constants;
@@ -45,6 +46,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     private ImagesAdapter imagesAdapter;
     private GridLayoutManager gridLayoutManager;
     private ImagesData imagesData;
+    private SlideshowDialog slideshowDialog;
     private List<Image> images;
     private Pagination pagination;
     private String albumId;
@@ -87,6 +89,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
         description = getIntent().getStringExtra(Album.DESCRIPTION);
 
         params.put(Album.ALBUM_ID, albumId);
+        params.put(Album.LIMIT, "100");
 
         albumName.setText(name);
         albumDescription.setText(description);
@@ -123,7 +126,8 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
 
     @Override
     public void onClick(View view, int position) {
-
+        slideshowDialog = new SlideshowDialog(name, position, images);
+        slideshowDialog.show(getSupportFragmentManager(), SlideshowDialog.TAG);
     }
 
     @Override
