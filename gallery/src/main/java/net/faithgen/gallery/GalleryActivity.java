@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,18 +26,24 @@ import net.innoflash.iosview.recyclerview.RecyclerTouchListener;
 import net.innoflash.iosview.recyclerview.RecyclerViewClickListener;
 import net.innoflash.iosview.swipelib.SwipeRefreshLayout;
 
+import java.util.HashMap;
 import java.util.List;
+
+import br.com.liveo.searchliveo.SearchLiveo;
 
 public class GalleryActivity extends FaithGenActivity implements RecyclerViewClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+    private SearchLiveo searchLiveo;
     private RecyclerView albumsView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private GridLayoutManager gridLayoutManager;
     private List<Album> albums;
+    private HashMap<String, String> params;
     private Pagination pagination;
     private AlbumsData albumsData;
     private AlbumAdapter albumAdapter;
     private Intent intent;
+    private String filterText = "";
 
     @Override
     public String getPageTitle() {
@@ -64,17 +71,43 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
         swipeRefreshLayout.setOnRefreshListener(this);
         albumsView.setLayoutManager(gridLayoutManager);
         albumsView.addOnItemTouchListener(new RecyclerTouchListener(this, albumsView, this));
+
+        params = new HashMap<>();
+
+        searchLiveo = findViewById(R.id.search_liveo);
+        searchLiveo.with(this, charSequence -> {
+            filterText = (String) charSequence;
+            Log.d("tag", "onCreate: " + charSequence);
+            loadAlbums(Constants.ALBUMS, true);
+        })
+                .showVoice()
+                .hideKeyboardAfterSearch()
+                .hideSearch(() -> {
+                    getToolbar().setVisibility(View.VISIBLE);
+                    if (!filterText.isEmpty()) {
+                        filterText = "";
+                        searchLiveo.text(filterText);
+                        loadAlbums(Constants.ALBUMS, true);
+                    }
+                })
+                .build();
+        setOnOptionsClicked(R.drawable.ic_search, view -> {
+            searchLiveo.setVisibility(View.VISIBLE);
+            searchLiveo.show();
+            getToolbar().setVisibility(View.GONE);
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if (albums == null || albums.size() == 0)
-            loadAlbums(Constants.ALBUMS);
+            loadAlbums(Constants.ALBUMS, true);
     }
 
-    private void loadAlbums(String url) {
-        API.get(this, url, null, false, new ServerResponse() {
+    private void loadAlbums(String url, boolean reload) {
+        params.put(Constants.FILTER_TEXT, filterText);
+        API.get(this, url, params, false, new ServerResponse() {
             @Override
             public void onServerResponse(String serverResponse) {
                 swipeRefreshLayout.setRefreshing(false);
@@ -82,7 +115,7 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
                 pagination = GSONSingleton.getInstance().getGson().fromJson(serverResponse, Pagination.class);
                 albumsData = GSONSingleton.getInstance().getGson().fromJson(serverResponse, AlbumsData.class);
 
-                if (albums == null || albums.size() == 0) {
+                if (reload || albums == null || albums.size() == 0) {
                     albums = albumsData.getAlbums();
                     albumAdapter = new AlbumAdapter(GalleryActivity.this, albums);
                     albumsView.setAdapter(albumAdapter);
@@ -116,6 +149,16 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     public void onRefresh() {
         if (pagination == null || pagination.getLinks().getNext() == null)
             swipeRefreshLayout.setRefreshing(false);
-        else loadAlbums(pagination.getLinks().getNext());
+        else loadAlbums(pagination.getLinks().getNext(), false);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == SearchLiveo.REQUEST_CODE_SPEECH_INPUT) {
+                searchLiveo.resultVoice(requestCode, resultCode, data);
+            }
+        }
     }
 }
