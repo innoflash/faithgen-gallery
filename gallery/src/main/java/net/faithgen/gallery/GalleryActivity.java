@@ -137,6 +137,8 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     public void onClick(View view, int position) {
         intent = new Intent(this, AlbumActivity.class);
         intent.putExtra(Album.ID, albums.get(position).getId());
+        intent.putExtra(Album.NAME, albums.get(position).getName());
+        intent.putExtra(Album.DESCRIPTION, albums.get(position).getDescription());
         startActivity(intent);
     }
 

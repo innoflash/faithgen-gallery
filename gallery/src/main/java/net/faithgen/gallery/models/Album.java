@@ -7,6 +7,10 @@ import org.itishka.gsonflatten.Flatten;
 
 public class Album {
     public static final String ID = "ID";
+    public static final String NAME = "_name";
+    public static final String DESCRIPTION = "_description";
+    public static final String ALBUM_ID = "album_id";
+
     private String id;
     private String name;
     private String description;

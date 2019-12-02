@@ -37,7 +37,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api 'com.github.faithgen:android-sdk:v1.0.4'
+    api 'com.github.faithgen:android-sdk:v1.0.5'
     api 'com.squareup.picasso:picasso:2.71828' //image lazyloader lib
     implementation 'com.github.rudsonlive:searchliveo:1.1.2' //search library
 }
