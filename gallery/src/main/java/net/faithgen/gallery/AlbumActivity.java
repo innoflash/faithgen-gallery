@@ -23,6 +23,8 @@ import net.faithgen.gallery.models.Image;
 import net.faithgen.gallery.utils.Constants;
 import net.faithgen.gallery.utils.ImagesData;
 import net.faithgen.sdk.FaithGenActivity;
+import net.faithgen.sdk.SDK;
+import net.faithgen.sdk.comments.CommentsSettings;
 import net.faithgen.sdk.http.API;
 import net.faithgen.sdk.http.ErrorResponse;
 import net.faithgen.sdk.http.Pagination;
@@ -49,9 +51,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     private SlideshowDialog slideshowDialog;
     private List<Image> images;
     private Pagination pagination;
-    private String albumId;
-    private String name;
-    private String description;
+    private Album album;
 
     @Override
     public String getPageTitle() {
@@ -64,6 +64,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
         setContentView(R.layout.activity_album);
 
         params = new HashMap<>();
+        album = GSONSingleton.getInstance().getGson().fromJson(getIntent().getStringExtra(Album.ALBUM), Album.class);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             gridLayoutManager = new GridLayoutManager(this, 2);
@@ -78,21 +79,27 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     //    swipeRefreshLayout.setOnRefreshListener(this);
         imagesView.setLayoutManager(gridLayoutManager);
         imagesView.addOnItemTouchListener(new RecyclerTouchListener(this, imagesView, this));
+
+        setOnOptionsClicked(R.drawable.ic_message_blue18dp, view -> {
+            SDK.openComments(this, new CommentsSettings.Builder()
+                    .setCategory("albums/")
+                    .setItemId(album.getId())
+                    .setTitle(album.getName())
+                    .build());
+        });
     }
 
     @Override
     protected void onStart() {
+
         super.onStart();
 
-        albumId = getIntent().getStringExtra(Album.ID);
-        name = getIntent().getStringExtra(Album.NAME);
-        description = getIntent().getStringExtra(Album.DESCRIPTION);
 
-        params.put(Album.ALBUM_ID, albumId);
+        params.put(Album.ALBUM_ID, album.getId());
         params.put(Album.LIMIT, "100");
 
-        albumName.setText(name);
-        albumDescription.setText(description);
+        albumName.setText(album.getName());
+        albumDescription.setText(album.getDescription());
 
         if (images == null || images.size() == 0)
             loadImages(Constants.ALBUMS_VIEW);
@@ -126,7 +133,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
 
     @Override
     public void onClick(View view, int position) {
-        slideshowDialog = new SlideshowDialog(name, position, images);
+        slideshowDialog = new SlideshowDialog(album.getName(), position, images);
         slideshowDialog.show(getSupportFragmentManager(), SlideshowDialog.TAG);
     }
 

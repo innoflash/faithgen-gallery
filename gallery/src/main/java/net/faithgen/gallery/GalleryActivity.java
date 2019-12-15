@@ -22,6 +22,7 @@ import net.faithgen.sdk.http.ErrorResponse;
 import net.faithgen.sdk.http.Pagination;
 import net.faithgen.sdk.http.types.ServerResponse;
 import net.faithgen.sdk.singletons.GSONSingleton;
+import net.faithgen.sdk.utils.Dialogs;
 import net.innoflash.iosview.recyclerview.RecyclerTouchListener;
 import net.innoflash.iosview.recyclerview.RecyclerViewClickListener;
 import net.innoflash.iosview.swipelib.SwipeRefreshLayout;
@@ -127,7 +128,8 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
 
             @Override
             public void onError(ErrorResponse errorResponse) {
-                super.onError(errorResponse);
+               // super.onError(errorResponse);
+                Dialogs.showOkDialog(GalleryActivity.this, errorResponse.getMessage(), false);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -136,9 +138,7 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     @Override
     public void onClick(View view, int position) {
         intent = new Intent(this, AlbumActivity.class);
-        intent.putExtra(Album.ID, albums.get(position).getId());
-        intent.putExtra(Album.NAME, albums.get(position).getName());
-        intent.putExtra(Album.DESCRIPTION, albums.get(position).getDescription());
+        intent.putExtra(Album.ALBUM, GSONSingleton.getInstance().getGson().toJson(albums.get(position)));
         startActivity(intent);
     }
 

@@ -11,6 +11,7 @@ public class Album {
     public static final String DESCRIPTION = "_description";
     public static final String ALBUM_ID = "album_id";
     public static final String LIMIT = "limit";
+    public static final String ALBUM = "_album";
 
     private String id;
     private String name;
