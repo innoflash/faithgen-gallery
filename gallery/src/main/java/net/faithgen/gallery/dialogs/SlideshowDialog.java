@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -15,6 +16,9 @@ import com.smarteist.autoimageslider.SliderView;
 import net.faithgen.gallery.R;
 import net.faithgen.gallery.adapters.SliderAdapter;
 import net.faithgen.gallery.models.Image;
+import net.faithgen.sdk.SDK;
+import net.faithgen.sdk.comments.CommentsSettings;
+import net.faithgen.sdk.enums.CommentsDisplay;
 import net.innoflash.iosview.DialogFullScreen;
 import net.innoflash.iosview.DialogToolbar;
 
@@ -56,7 +60,14 @@ public class SlideshowDialog extends DialogFullScreen {
         super.onStart();
         dialogToolbar.setTitle(albumName);
 
-        sliderAdapter = new SliderAdapter(getActivity(), images);
+        sliderAdapter = new SliderAdapter(getActivity(), images, image -> {
+            sliderView.setAutoCycle(false);
+            SDK.openComments((AppCompatActivity) getActivity(), new CommentsSettings.Builder()
+                    .setCategory("images/")
+                    .setItemId(image.getId())
+                    .setCommentsDisplay(CommentsDisplay.DIALOG)
+                    .build());
+        });
         sliderView.setSliderAdapter(sliderAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimations.DROP);
         sliderView.setSliderTransformAnimation(SliderAnimations.values()[random.nextInt(SliderAnimations.values().length)]);

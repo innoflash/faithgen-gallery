@@ -17,11 +17,13 @@ public class SliderAdapter extends SliderViewAdapter<SliderHolder> {
 
     private Context context;
     private List<Image> images;
+    private ImageListener imageListener;
     private LayoutInflater inflater;
 
-    public SliderAdapter(Context context, List<Image> images) {
+    public SliderAdapter(Context context, List<Image> images, ImageListener imageListener) {
         this.context = context;
         this.images = images;
+        this.imageListener = imageListener;
         this.inflater = LayoutInflater.from(this.context);
     }
 
@@ -37,10 +39,18 @@ public class SliderAdapter extends SliderViewAdapter<SliderHolder> {
                 .error(R.drawable.image_placeholder)
                 .placeholder(R.drawable.image_placeholder)
                 .into(viewHolder.getImageView());
+
+        viewHolder.getFloatingActionButton().setOnClickListener(v -> {
+            if(imageListener != null) imageListener.onImageClicked(images.get(position));
+        });
     }
 
     @Override
     public int getCount() {
         return images.size();
+    }
+
+    public interface ImageListener{
+        void onImageClicked(Image image);
     }
 }
