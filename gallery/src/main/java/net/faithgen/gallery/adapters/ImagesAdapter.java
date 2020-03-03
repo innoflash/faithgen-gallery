@@ -3,6 +3,7 @@ package net.faithgen.gallery.adapters;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImageHolder> {
     @NonNull
     @Override
     public ImageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ImageHolder(layoutInflater.inflate(R.layout.list_item_image, parent, false));
+        return new ImageHolder((ImageView) layoutInflater.inflate(R.layout.list_item_image, parent, false));
     }
 
     @Override

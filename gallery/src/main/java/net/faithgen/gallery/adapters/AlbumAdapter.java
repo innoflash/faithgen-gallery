@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import net.faithgen.gallery.R;
 import net.faithgen.gallery.models.Album;
 import net.faithgen.gallery.viewholders.AlbumHolder;
+import net.faithgen.gallery.views.AlbumView;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumHolder> {
     @NonNull
     @Override
     public AlbumHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AlbumHolder(layoutInflater.inflate(R.layout.list_item_album, parent, false));
+        return new AlbumHolder((AlbumView) layoutInflater.inflate(R.layout.list_item_album, parent, false));
     }
 
     @Override
