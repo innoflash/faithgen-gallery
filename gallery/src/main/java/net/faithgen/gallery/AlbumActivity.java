@@ -2,19 +2,12 @@ package net.faithgen.gallery;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import net.faithgen.gallery.adapters.ImagesAdapter;
 import net.faithgen.gallery.dialogs.SlideshowDialog;
@@ -25,7 +18,6 @@ import net.faithgen.gallery.utils.ImagesData;
 import net.faithgen.sdk.FaithGenActivity;
 import net.faithgen.sdk.SDK;
 import net.faithgen.sdk.comments.CommentsSettings;
-import net.faithgen.sdk.http.API;
 import net.faithgen.sdk.http.ErrorResponse;
 import net.faithgen.sdk.http.FaithGenAPI;
 import net.faithgen.sdk.http.Pagination;
@@ -106,15 +98,13 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
             loadImages(Constants.ALBUMS_VIEW);
     }
 
-    void loadImages(String url) {
-        faithGenAPI
-                .setP
-        API.get(this, url, params, false, new ServerResponse() {
+    private ServerResponse getServerResponse() {
+        return new ServerResponse() {
             @Override
             public void onServerResponse(String serverResponse) {
                 Log.d("tag", "onServerResponse: " + serverResponse);
-                pagination = GSONSingleton.getInstance().getGson().fromJson(serverResponse, Pagination.class);
-                imagesData = GSONSingleton.getInstance().getGson().fromJson(serverResponse, ImagesData.class);
+                pagination = GSONSingleton.Companion.getInstance().getGson().fromJson(serverResponse, Pagination.class);
+                imagesData = GSONSingleton.Companion.getInstance().getGson().fromJson(serverResponse, ImagesData.class);
 
                 if (images == null || images.size() == 0) {
                     images = imagesData.getImages();
@@ -128,10 +118,18 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
 
             @Override
             public void onError(ErrorResponse errorResponse) {
-                super.onError(errorResponse);
+                //super.onError(errorResponse);
                 Dialogs.showOkDialog(AlbumActivity.this, errorResponse.getMessage(), false);
             }
-        });
+        };
+    }
+
+    void loadImages(String url) {
+        faithGenAPI
+                .setParams(params)
+                .setProcess(Constants.OPENING_ALBUM)
+                .setServerResponse(getServerResponse())
+                .request(url);
     }
 
     @Override
