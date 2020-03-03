@@ -27,6 +27,7 @@ import net.faithgen.sdk.SDK;
 import net.faithgen.sdk.comments.CommentsSettings;
 import net.faithgen.sdk.http.API;
 import net.faithgen.sdk.http.ErrorResponse;
+import net.faithgen.sdk.http.FaithGenAPI;
 import net.faithgen.sdk.http.Pagination;
 import net.faithgen.sdk.http.types.ServerResponse;
 import net.faithgen.sdk.singletons.GSONSingleton;
@@ -43,7 +44,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     private TextView albumName;
     private TextView albumDescription;
     private RecyclerView imagesView;
-   // private SwipeRefreshLayout swipeRefreshLayout;
+    // private SwipeRefreshLayout swipeRefreshLayout;
     private HashMap<String, String> params;
     private ImagesAdapter imagesAdapter;
     private GridLayoutManager gridLayoutManager;
@@ -52,6 +53,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     private List<Image> images;
     private Pagination pagination;
     private Album album;
+    private FaithGenAPI faithGenAPI;
 
     @Override
     public String getPageTitle() {
@@ -62,9 +64,10 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
+        faithGenAPI = new FaithGenAPI(this);
 
         params = new HashMap<>();
-        album = GSONSingleton.getInstance().getGson().fromJson(getIntent().getStringExtra(Album.ALBUM), Album.class);
+        album = GSONSingleton.Companion.getInstance().getGson().fromJson(getIntent().getStringExtra(Album.ALBUM), Album.class);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             gridLayoutManager = new GridLayoutManager(this, 2);
@@ -73,10 +76,10 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
         albumName = findViewById(R.id.albumName);
         albumDescription = findViewById(R.id.albumDescription);
         imagesView = findViewById(R.id.imagesView);
-    //    swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        //    swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
-    //    swipeRefreshLayout.setPullPosition(Gravity.BOTTOM);
-    //    swipeRefreshLayout.setOnRefreshListener(this);
+        //    swipeRefreshLayout.setPullPosition(Gravity.BOTTOM);
+        //    swipeRefreshLayout.setOnRefreshListener(this);
         imagesView.setLayoutManager(gridLayoutManager);
         imagesView.addOnItemTouchListener(new RecyclerTouchListener(this, imagesView, this));
 
@@ -91,9 +94,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
 
     @Override
     protected void onStart() {
-
         super.onStart();
-
 
         params.put(Album.ALBUM_ID, album.getId());
         params.put(Album.LIMIT, "100");
@@ -106,6 +107,8 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     }
 
     void loadImages(String url) {
+        faithGenAPI
+                .setP
         API.get(this, url, params, false, new ServerResponse() {
             @Override
             public void onServerResponse(String serverResponse) {

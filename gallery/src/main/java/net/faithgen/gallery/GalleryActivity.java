@@ -3,22 +3,21 @@ package net.faithgen.gallery;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
 
 import net.faithgen.gallery.adapters.AlbumAdapter;
 import net.faithgen.gallery.models.Album;
 import net.faithgen.gallery.utils.AlbumsData;
 import net.faithgen.gallery.utils.Constants;
 import net.faithgen.sdk.FaithGenActivity;
-import net.faithgen.sdk.http.API;
 import net.faithgen.sdk.http.ErrorResponse;
+import net.faithgen.sdk.http.FaithGenAPI;
 import net.faithgen.sdk.http.Pagination;
 import net.faithgen.sdk.http.types.ServerResponse;
 import net.faithgen.sdk.singletons.GSONSingleton;
@@ -45,6 +44,7 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     private AlbumAdapter albumAdapter;
     private Intent intent;
     private String filterText = "";
+    private FaithGenAPI faithGenAPI;
 
     @Override
     public String getPageTitle() {
@@ -60,6 +60,8 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
+        faithGenAPI = new FaithGenAPI(this);
 
         albumsView = findViewById(R.id.albumsView);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -108,37 +110,40 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
 
     private void loadAlbums(String url, boolean reload) {
         params.put(Constants.FILTER_TEXT, filterText);
-        API.get(this, url, params, false, new ServerResponse() {
-            @Override
-            public void onServerResponse(String serverResponse) {
-                swipeRefreshLayout.setRefreshing(false);
-                Log.d("tag", "onServerResponse: " + serverResponse);
-                pagination = GSONSingleton.getInstance().getGson().fromJson(serverResponse, Pagination.class);
-                albumsData = GSONSingleton.getInstance().getGson().fromJson(serverResponse, AlbumsData.class);
+        faithGenAPI
+                .setProcess(Constants.FETCHING_ALBUMS)
+                .setParams(params)
+                .setServerResponse(new ServerResponse() {
+                    @Override
+                    public void onServerResponse(String serverResponse) {
+                        swipeRefreshLayout.setRefreshing(false);
+                        Log.d("tag", "onServerResponse: " + serverResponse);
+                        pagination = GSONSingleton.Companion.getInstance().getGson().fromJson(serverResponse, Pagination.class);
+                        albumsData = GSONSingleton.Companion.getInstance().getGson().fromJson(serverResponse, AlbumsData.class);
+                        if (reload || albums == null || albums.size() == 0) {
+                            albums = albumsData.getAlbums();
+                            albumAdapter = new AlbumAdapter(GalleryActivity.this, albums);
+                            albumsView.setAdapter(albumAdapter);
+                        } else {
+                            albums.addAll(albumsData.getAlbums());
+                            albumAdapter.notifyDataSetChanged();
+                        }
+                    }
 
-                if (reload || albums == null || albums.size() == 0) {
-                    albums = albumsData.getAlbums();
-                    albumAdapter = new AlbumAdapter(GalleryActivity.this, albums);
-                    albumsView.setAdapter(albumAdapter);
-                } else {
-                    albums.addAll(albumsData.getAlbums());
-                    albumAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onError(ErrorResponse errorResponse) {
-               // super.onError(errorResponse);
-                Dialogs.showOkDialog(GalleryActivity.this, errorResponse.getMessage(), false);
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+                    @Override
+                    public void onError(ErrorResponse errorResponse) {
+                        // super.onError(errorResponse);
+                        Dialogs.showOkDialog(GalleryActivity.this, errorResponse.getMessage(), null);
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                })
+                .request(url);
     }
 
     @Override
     public void onClick(View view, int position) {
         intent = new Intent(this, AlbumActivity.class);
-        intent.putExtra(Album.ALBUM, GSONSingleton.getInstance().getGson().toJson(albums.get(position)));
+        intent.putExtra(Album.ALBUM, GSONSingleton.Companion.getInstance().getGson().toJson(albums.get(position)));
         startActivity(intent);
     }
 
@@ -162,5 +167,11 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
                 searchLiveo.resultVoice(requestCode, resultCode, data);
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        faithGenAPI.cancelRequests();
     }
 }
