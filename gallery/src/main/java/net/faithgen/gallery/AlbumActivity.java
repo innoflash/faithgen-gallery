@@ -59,7 +59,7 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
         faithGenAPI = new FaithGenAPI(this);
 
         params = new HashMap<>();
-        album = GSONSingleton.Companion.getInstance().getGson().fromJson(getIntent().getStringExtra(Album.ALBUM), Album.class);
+        album = GSONSingleton.Companion.getInstance().getGson().fromJson(getIntent().getStringExtra(Constants.ALBUM_), Album.class);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             gridLayoutManager = new GridLayoutManager(this, 2);
@@ -88,8 +88,8 @@ public class AlbumActivity extends FaithGenActivity implements RecyclerViewClick
     protected void onStart() {
         super.onStart();
 
-        params.put(Album.ALBUM_ID, album.getId());
-        params.put(Album.LIMIT, "100");
+        params.put(Constants.ALBUM_ID, album.getId());
+        params.put(Constants.LIMIT, "100");
 
         albumName.setText(album.getName());
         albumDescription.setText(album.getDescription());

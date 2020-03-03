@@ -133,7 +133,7 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
                     @Override
                     public void onError(ErrorResponse errorResponse) {
                         // super.onError(errorResponse);
-                        Dialogs.showOkDialog(GalleryActivity.this, errorResponse.getMessage(), null);
+                        Dialogs.showOkDialog(GalleryActivity.this, errorResponse.getMessage(), pagination == null);
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 })
@@ -143,7 +143,7 @@ public class GalleryActivity extends FaithGenActivity implements RecyclerViewCli
     @Override
     public void onClick(View view, int position) {
         intent = new Intent(this, AlbumActivity.class);
-        intent.putExtra(Album.ALBUM, GSONSingleton.Companion.getInstance().getGson().toJson(albums.get(position)));
+        intent.putExtra(Constants.ALBUM_, GSONSingleton.Companion.getInstance().getGson().toJson(albums.get(position)));
         startActivity(intent);
     }
 
