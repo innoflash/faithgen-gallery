@@ -91,7 +91,7 @@ class AlbumActivity : FaithGenActivity(), RecyclerViewClickListener {
         }
     }
 
-    fun loadImages(url: String?) {
+    private fun loadImages(url: String?) {
         faithGenAPI
                 .setParams(params as HashMap<String, String>)
                 .setProcess(Constants.OPENING_ALBUM)
