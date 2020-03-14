@@ -13,6 +13,14 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+signingConfigs {
+        release {
+            storeFile file("app/faithgen-release-key.jks")
+            storePassword "#Faithgen2020"
+            keyAlias "faithgen"
+            keyPassword "#Faithgen2020"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
