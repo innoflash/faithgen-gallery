@@ -31,9 +31,9 @@ class GalleryActivity : FaithGenActivity(), RecyclerViewClickListener, SwipeRefr
     private var albumsData: AlbumsData? = null
     private var albumAdapter: AlbumAdapter? = null
 
-    private val params : MutableMap<String, String> = mutableMapOf()
+    private val params: MutableMap<String, String> = mutableMapOf()
 
-    private val faithGenAPI : FaithGenAPI  by lazy { FaithGenAPI(this) }
+    private val faithGenAPI: FaithGenAPI by lazy { FaithGenAPI(this) }
 
     override fun getPageTitle(): String? {
         return Constants.GALLERY
@@ -107,9 +107,9 @@ class GalleryActivity : FaithGenActivity(), RecyclerViewClickListener, SwipeRefr
     }
 
     override fun onClick(view: View?, position: Int) {
-       val intent = Intent(this, AlbumActivity::class.java)
-        intent.putExtra(Constants.ALBUM_, instance.gson.toJson(albums!![position]))
-        startActivity(intent)
+        val albumIntent = Intent(this, AlbumActivity::class.java)
+        albumIntent.putExtra(Constants.ALBUM_, instance.gson.toJson(albums!![position]))
+        startActivity(albumIntent)
     }
 
     override fun onLongClick(view: View?, position: Int) {
@@ -117,7 +117,7 @@ class GalleryActivity : FaithGenActivity(), RecyclerViewClickListener, SwipeRefr
 
     override fun onRefresh() {
         if (pagination == null || pagination!!.links.next.isNullOrBlank())
-            swipeRefreshLayout.isRefreshing = false 
+            swipeRefreshLayout.isRefreshing = false
         else loadAlbums(pagination!!.links.next, false)
     }
 

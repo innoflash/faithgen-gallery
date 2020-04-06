@@ -19,7 +19,7 @@ public class TheApp extends Application {
         try {
             GoodPrefs.init(this);
             SDK.initializeSDK(this, this.getAssets().open("config.json"), getResources().getString(R.color.colorPrimaryDark), null);
-            SDK.initializeApiBase("http://192.168.8.100:8001/api/");
+            SDK.initializeApiBase("http://192.168.8.101:8001/api/");
         } catch (IOException e) {
             e.printStackTrace();
         }

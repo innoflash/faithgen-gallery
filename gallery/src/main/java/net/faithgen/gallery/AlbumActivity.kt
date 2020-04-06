@@ -30,12 +30,11 @@ class AlbumActivity : FaithGenActivity(), RecyclerViewClickListener {
 
     private val faithGenAPI: FaithGenAPI by lazy { FaithGenAPI(this) }
 
-    private val album: Album by lazy { GSONSingleton.instance.gson.fromJson(intent.getStringExtra(Constants.ALBUM_), Album::class.java) }
+    private lateinit var albumString: String
 
-    private val params: MutableMap<String, String> = mutableMapOf(
-            Pair(Constants.ALBUM_ID, album.id),
-            Pair(Constants.LIMIT, "100")
-    )
+    private lateinit var album: Album
+
+    private lateinit var params: MutableMap<String, String>
 
     override fun getPageTitle(): String? {
         return Constants.ALBUM
@@ -44,6 +43,13 @@ class AlbumActivity : FaithGenActivity(), RecyclerViewClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
+
+        albumString = intent.getStringExtra(Constants.ALBUM_)
+        album = GSONSingleton.instance.gson.fromJson(albumString, Album::class.java)
+        params = mutableMapOf(
+                Pair(Constants.ALBUM_ID, album.id),
+                Pair(Constants.LIMIT, "100")
+        )
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
             imagesView.layoutManager = GridLayoutManager(this, 2)
